@@ -41,6 +41,14 @@ pipeline {
                 }
             }
         }
+
+         stage('Run Docker Image') {
+            steps {
+                script {
+                    sh 'docker run -p 3000:3000 $(docker images --format=\'{{.ID}}\' | head -1)'
+                }
+            }
+        }
     }
 
     post {
